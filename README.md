@@ -61,3 +61,58 @@ const handleSubmit = (e) => {
 </form>
 ````
 #
+### 2. Comunicación entre componentes 💬:
+Para esto necesitamos pasarle con elemento, este seria la propiedad `setCategories` del __useState__ que esta dentro de __GifExpertApp.js__.
+````
+    const [categories, setCategories] = useState([...]);
+````
+* En el return que renderizamos le mandamos la referencia de la propiedad mencionada "__setCategories__".
+````
+<h2>GifExpertApp</h2>
+            <AddCategory setCategories={setCategories}/>
+            <hr/>
+````
+* Luego vamos a __AddCategory.js__ la que recibira la propiedad que fue enviada por __GifExpertApp.js__.
+````
+export const AddCategory = ({setCategories}) => {...}
+````
+* En la función `handleSubmit()` se hará el manejo de la propiedad entregada.
+* Realizamos una función de flecha la que establecemos _"la copia del arreglo"_ `[...cats]` que es pasada a traves de la propiedad, y ademas le insertamos el nuevo valor de `inputValue`.
+````
+const handleSubmit = (e) => {
+        e.preventDefault();
+        setCategories(cats => [...cats, inputValue]);
+    }
+````
+* Para limpiar el __input__ (textbox) usamos `setInputValue('');` lo cual cada vez que invocamos a la función la que es emitido con el __"Enter"__
+````
+e.preventDefault();
+setCategories(cats => [...cats, inputValue]);
+setInputValue('');
+````
+* Adicionalmente le agregamos una condición para no insertar un string menor a 2 caracteres _(Eliminando los espacios del inicio y el fin `.trim()`)_
+````
+e.preventDefault();
+if( inputValue.trim().length > 2 ){
+    setCategories(cats => [...cats, inputValue]);
+    setInputValue('');
+}
+````
+Ahora se necesita que la función `setCategories` sea requerida para el uso del componente.
+* Para esto requerimos de la importacion del __PropTypes__
+````
+import PropTypes from 'prop-types';
+````
+* Nos vamos al final de __AddCategory.js__ y usamoes el componente `AddCategory` y luego definimos nuestro __PropsTypes__.
+* Usamos `.func` de función es requerida y que sea obligatoria con `.isRequired`
+````
+};
+AddCategory.propTypes = {
+    setCategories: PropTypes.func.isRequired
+}
+````
+
+
+#
+### 3.- ABCD:
+*
