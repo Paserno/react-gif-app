@@ -168,6 +168,35 @@ const gifs = data.map( img => {
  const [categories, setCategories] = useState(['Goku']);
 ````
 #
-### 4. ABCD: 
+### 4. useEffect: 
+Resulta que la función `getGif()`, es renderizada siempre que haya un evento en la pagina, para esto es necesario el uso de useEffect, para que no se este ejecutando siempre y producir un potencial bucle.
+* Realizamos la Imporacion de __useEffect__.
+````
+import React, { useState, useEffect } from 'react'
+````
+* Realizamos un contador para verificar.
+````
+const [count, setCount] = useState(0);
+````
+* Con el `<h4>` vemos el contador del __useState__.
+* Ademas colocamos el boton con el evento __onClick__, comprobando que siempre que se inicia el evento del clic se ejecuta la funcion `getGif()`.
+````
+<div>
+            <h3>{category}</h3>
+            <h4>{count}</h4>
+            <button onClick={ () => setCount( count + 1) } >count</button>
+        </div>
+````
+* Para esto se invoca el __useEffect__, para evitar el problema.
+* Colocamos la función `getGif();`.
+* Ponemos un arreglo vacio `[]`, esto lo que porovoca es que se disparara una sola vez la función colocada en el __useEffect__.
+````
+useEffect( () => {
+        getGif();
+    }, [] ) 
+
+````
+#
+### 5.- ABCD:
 
 #
