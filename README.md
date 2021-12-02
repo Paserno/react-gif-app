@@ -114,5 +114,60 @@ AddCategory.propTypes = {
 
 
 #
-### 3.- ABCD:
-*
+### 3.- Fetch Api - Obtener las imagenes:
+El objetivo es obtener las imagens de Giphy, para esto creamos el componente __GifGrid.js__, la que importaremos en __GifExpertApp.js__.
+````
+import { GifGrid } from './components/GifGrid';
+````
+* Luego usamos el elemento `<GifGrid />` y le pasamos la key y category.
+````
+<ol>
+    { 
+        categories.map( category => (
+            <GifGrid 
+            key={category}
+            category={category}/>
+        ))
+    }
+</ol>
+````
+* Tomamos la propiedad __category__.
+````
+export const GifGrid = ({category}) => { ... }
+````
+* Creamos la clase que obtendra el url de la api a consumir.
+* Nos aseguramos que la url este correcta, (Verificamos con Postman).
+* Hacemos la desestructuración de la api con `const {data}`.
+````
+const getGif = async() => {
+    const url = 'https://api.giphy.com/v1/gifs/search?q=Goku&limit=10&api_key=xxxxxxxxxxxxxx';
+    const resp = await fetch(url);
+    const {data} = await resp.json();
+    }
+````
+* Luego retornamos un objeto litarario, para buscar los elementos que nos interesan, como el id, title y un url que nos acomode.
+````
+const gifs = data.map( img => {
+            return {
+                id: img.id,
+                title: img.title,
+                url: img.images?.downsized_medium.url
+            }
+        });
+````
+* Realizamos el return de la componente __GifGrid.js__.
+````
+  return (
+        <div>
+            <h3>{category}</h3>
+        </div>
+    )
+````
+* Retornara el elemento que tengamos en el __useState__ de __GifExportApp.js__
+````
+ const [categories, setCategories] = useState(['Goku']);
+````
+#
+### 4. ABCD: 
+
+#
