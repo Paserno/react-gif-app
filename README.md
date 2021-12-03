@@ -1,6 +1,6 @@
-# Gif App
+# Gif App ⚛️
 Aprendiendo el uso de React... 
-### 1.- Inicio del proyecto:
+### 1.- ⚛️ Inicio del proyecto :
 Se creo __GifExpertApp__ ademas de la carpeta __components__ y su componente __AddCategory.js__.
 ````
 📂src/
@@ -280,4 +280,44 @@ useEffect(() => {
         .then( imgs => setImages(imgs));
 }, [ category ])
 ````
+#
+### 8.- Custom Hooks 🎣:
+Crearemos un Custom Hooks, creando la capreta __📂 hooks__ donde se almacenaran los Hooks personalizados, ademas creamos en la carpeta mencionada __useFetchGitfs.js__ que lo utilizaremos.
+* Realizamos la exportacion de hooks custom.
+````
+export const useFetchGifs = () => {...}
+````
+* Se crea el __useState__, con la importación correspondiente de React ⚛️.
+````
+const [state, setState] = useState({
+        data: [],
+        loading: true
+    });
+````
+* Colocamos un `setTimeout` con 3s.
+* Utilizamos el __setState__ y regresamos un arreglo y un false.
+````
+setTimeout(() => {
+        setState({
+            data: [1,2,3,4,5,6,7],
+            loading: false
+        })
+    }, 3000);
+````
+*  Retonramos el __state__
+````
+return state; 
+````
+Luego importamos nuestro __Custom Hooks 🎣__ en __GifGrid.js__
+* Realizamos la desestructuración del elemento.
+* Comentamos todos los elementos __Hooks__ _(useState y useEffect)_.
+````
+    const { loading } = useFetchGifs();
+````
+* En el return, despues del `<h3>`, insertamos __loading__ con una operación ternario.
+````
+{ loading ? 'Cargando...' : 'Data Cargada.'}
+````
+#
+### 9.- ABCD:
 #
