@@ -239,5 +239,18 @@ return (
     )
 ````
 #
-### 6.- ABCDE:
+### 6.- Clases en CSS3:
+Se agregaron las clases correspondientes para ver de una mejor forma las imagenes (gif) entregadas
+* En el `div` de __GifGridItem.js__ se le agrego una clase `card`.
+````
+<div className="card">
+````
+* En el `div` de __GifGrid.js__ tambien se agrego la clase `card-grid`.
+* Ademas se intercambio posicion con el `<h3>`.
+````
+<h3>{category}</h3>
+<div className="card-grid">
+````
+#
+### 7.- ABCD:
 #
