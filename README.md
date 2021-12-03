@@ -168,7 +168,7 @@ const gifs = data.map( img => {
  const [categories, setCategories] = useState(['Goku']);
 ````
 #
-### 4. useEffect: 
+### 4.- useEffect: 
 Resulta que la función `getGif()`, es renderizada siempre que haya un evento en la pagina, para esto es necesario el uso de useEffect, para que no se este ejecutando siempre y producir un potencial bucle.
 * Realizamos la Imporacion de __useEffect__.
 ````
@@ -197,6 +197,47 @@ useEffect( () => {
 
 ````
 #
-### 5.- ABCD:
+### 5.- Mostrar los titulos de las imagenes (Gif):
+Ya no es necesario el contador del __Punto 4__ ya que era para demostrar que era necesario el uso de __useEffect__, en esta ocasion lo eliminaremos, para continuar con el siguiente punto.
+* Remplazamos el __useState count__ y lo remplazamos por uno de __images__.
+````
+const [images, setImages] = useState([]);
+````
+* Le pasamos el __.map()__ que hicimos el __Punto 3: Fetch Api - Obtener las imagenes:__ a nuestro nuevo `setImages`.
+````
+setImages( gifs);
+````
+* Luego creamos un nuevo componente que se denomino __GifGridItem.js__.
+* Para luego invocarlo y pasarle algunas porpiedades, remplazando lo que hicimos en el __Punto 4__.
+* No olvidar importarlo.
+* Realizamos un `.map()` para manipular los elementos del arreglo.
+* Le asignamo la key con los valores de id que tiene la propia api por cada Gif, luego le mandamos el operador spread `{...img}` para realizar una copia superficial del objeto y realizar la manipulación de este.
 
+````
+{
+    images.map(img => (
+        <GifGridItem 
+        key={img.id}
+        { ...img }
+        />
+    ))
+}
+````
+Como habiamos mencionado se creeo __GifGridItem.js__ ahora nos vamos a manipular el componente.
+* Primero le pasamos las propiedades, en este caso haciendo una desestructuracion de elementos `( {title, url} )`.
+````
+export const GifGridItem = ( {title, url} ) => {...}
+````
+* Realizamos el return correspondiente.
+* Creando una imagen, la que se le pasara al __scr el url__ y creamos un parrafo con el __titulo__.
+````
+return (
+        <div>
+            <img src={url} alt={title}/>
+            <p> {title} </p>
+        </div>
+    )
+````
+#
+### 6.- ABCDE:
 #
