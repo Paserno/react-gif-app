@@ -319,5 +319,6 @@ Luego importamos nuestro __Custom Hooks 🎣__ en __GifGrid.js__
 { loading ? 'Cargando...' : 'Data Cargada.'}
 ````
 #
-### 9.- ABCD:
+### 9.- useFetchGif - obtener imagen y carga:
+...
 #
