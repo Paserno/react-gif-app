@@ -1,5 +1,21 @@
+> __Elemento Anterior 👀:__ __[Primeros pasos de React 👣](https://github.com/Paserno/first-react-couterapp)__
+
+<br>
+
 # Gif App ⚛️
 Aprendiendo el uso de React... 
+* Recordar que si se desea ejecutar esta aplicación, deben de reconstruir los módulos de node así:
+````
+npm install
+````
+* Y luego para hacerla correr.
+````
+npm start
+````
+<br>
+
+#
+
 ### 1.- ⚛️ Inicio del proyecto :
 Se creo __GifExpertApp__ ademas de la carpeta __components__ y su componente __AddCategory.js__.
 ````
