@@ -197,7 +197,7 @@ useEffect( () => {
 
 ````
 #
-### 5.- Mostrar los titulos de las imagenes (Gif):
+### 5.- Mostrar los titulos de las imagenes (Gif) 🖼️:
 Ya no es necesario el contador del __Punto 4__ ya que era para demostrar que era necesario el uso de __useEffect__, en esta ocasion lo eliminaremos, para continuar con el siguiente punto.
 * Remplazamos el __useState count__ y lo remplazamos por uno de __images__.
 ````
@@ -252,5 +252,32 @@ Se agregaron las clases correspondientes para ver de una mejor forma las imagene
 <div className="card-grid">
 ````
 #
-### 7.- ABCD:
+### 7.- 📂 Helpres - getGif:
+Para realizar una mayor modularidad del codigo, extraemos la funcion __getGifs de GifGrid.js__ y le creamos una 📂 carpeta llamada __helpers__ para crear un achivo JS y colocar su peticion fetch de la API de __Giphy__
+* Copiamos el elemento de __GifGrid.js__ y lo insertamos en __getGifs.js__.
+* Realizamos la exportacion correspondiente `export`.
+* Y solicitamos la propiedad `category`.
+````
+export const getGif = async ( category ) => {...}
+````
+* En la busqueda `.../search?q=` le agregamos la propiedad `category`.
+* Agregamos la funcion propia de JS `encodeURI()` lo que devuelve una nueva cadena que representa la cadena proporcionada codificada como un "URI".
+````
+const url = `https://api.giphy.com/v1/gifs/search?q=${ encodeURI(category) }&limit=10&api_key=XXXXXXXXXXXXXXXX`;
+````
+* Realizamos el retorno de la __map()__ __gifs__
+````
+return gifs;
+````
+Modificamos el __useEffect__ de __GifGrid.js__.
+* Le mandamos la propiedad `category`.
+* No olvidar importar __getGif__.
+* Como es una promesa necesitamos el `.then` y llamamos el `setImages` para luego mandarle las imagenes(gif) `imgs`.
+* Necesitamos poner una dependencia, que en este caso seria `[ category ]` y esta la colocamos al final del __useEffect__ _(para que no salga el Warning de dependencia)_
+````
+useEffect(() => {
+    getGif( category )
+        .then( imgs => setImages(imgs));
+}, [ category ])
+````
 #

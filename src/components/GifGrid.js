@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { getGif } from '../helpers/getGifs';
 import { GifGridItem } from './GifGridItem';
 
 export const GifGrid = ({ category }) => {
@@ -7,27 +8,10 @@ export const GifGrid = ({ category }) => {
 
 
     useEffect(() => {
-        getGif();
-    }, []) // un Arreglo vacio, se va a disparar una sola vez del useEffect
+        getGif( category )
+            .then( imgs => setImages(imgs));
+    }, [ category ]) // un Arreglo vacio, se va a disparar una sola vez del useEffect
 
-
-    const getGif = async () => {
-        const url = 'https://api.giphy.com/v1/gifs/search?q=Goku&limit=10&api_key=fom8J2Gk6HSbvB8qZ4FpKEJCiaZg7H0Q';
-        const resp = await fetch(url);
-        const { data } = await resp.json();
-
-        const gifs = data.map(img => {
-            return {
-                id: img.id,
-                title: img.title,
-                url: img.images?.downsized_medium.url
-            }
-
-        });
-
-        console.log(gifs);
-        setImages(gifs);
-    }
 
 
     // getGif()
