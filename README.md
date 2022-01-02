@@ -415,3 +415,38 @@ const wrapper = shallow( <GifGridItem title={ title } url={ url } /> )
 expect( wrapper ).toMatchSnapshot();
 ````
 #
+### 3.- Pruebas de componente - GifGridItem
+Se realizarán las pruebas de los compoente de `GifGridItem`
+* Este elemento lo sacamos de la primera prueba "mostrar el componente correctamente", para usarlos en los otros __Test__.
+````
+const wrapper = shallow( <GifGridItem title={ title } url={ url } /> )
+````
+* Se implementa el test de probar el parrafo con los titulos del __Gif__.
+* Realizamos la busqueda del componente parrafo `<p></p>` y comprobamos si tiene el titulo.
+````
+test('debe de tener un parrafo con el titulo', () => {
+        const p = wrapper.find('p');
+        expect( p.text().trim() ).toBe( title );
+    });
+````
+* Comprobamos que los campos tenga las propiedades correctas, para esto buscamos la `<img/>` para verificar que tenga esos campos correctamente.
+````
+test('debe de tener la imagen igual al url y alt de los props', () => {
+        
+        const img = wrapper.find('img');
+
+        expect( img.prop('src')).toBe(url)
+        expect( img.prop('alt')).toBe(title)
+    });
+````
+* Probamos que tenga la clase `animate__fadeIn` en el `<div></div>`, para esto buscamos la propiedad en la clase y luego verificamos si es verdad `true`.
+````
+test('debe de tener animate__fadeIn', () => {
+        
+        const div = wrapper.find('div');
+        const className = div.prop('className');
+        
+        expect( className.includes('animate__fadeIn') ).toBe( true );
+    })
+````
+#
