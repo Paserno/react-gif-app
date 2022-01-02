@@ -338,3 +338,49 @@ Luego importamos nuestro __Custom Hooks 🎣__ en __GifGrid.js__
 ### 9.- useFetchGif - obtener imagen y carga:
 ...
 #
+# Testing - Probando la aplicación de Gif App
+
+Se realizará los test de la aplicación de __Gif__, elementos utilizados
+
+* [Enzyme - React 17](https://github.com/wojtekmaj/enzyme-adapter-react-17)
+* [Enzyme to JSON](https://www.npmjs.com/package/enzyme-to-json)
+#
+### 1.- Configurar el ambiente de prueba
+Nos vamos a la documentación de __[Enzyme - React 17](https://github.com/wojtekmaj/enzyme-adapter-react-17)__ y __[Enzyme to JSON](https://www.npmjs.com/package/enzyme-to-json)__, para la instalación y implementación
+* Realizamos la importaciones de ambos __Enzyme__.
+````
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import {createSerializer} from 'enzyme-to-json';
+````
+* Colocamos la configuración que se necesita en la documentación.
+````
+Enzyme.configure({ adapter: new Adapter() });
+
+expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
+````
+Luego creamos 2 carpetas para almacenar los test y otra para los componentes que se probaran
+* Se crea ambas carpetas `tests/components/GifGridItem.test.js`.
+
+Ahora Realizaremos se hará los __test__ en `tests/components/GifGridItem.test.js`
+* Realizamos la importaciones que utilizaremos.
+````
+import React from 'react';
+import {shallow} from 'enzyme';
+import { GifGridItem } from "../../components/GifGridItem"
+````
+* Realizamos la descripión de la prubea general. 
+````
+describe('Pruebas en <GifGridItem >', () => {
+    ...
+})
+````
+* Realizamos el primer test con su descripción, el cual sacara una imagen al contenido de `<GifGridItem />`.
+````
+test('debe de mostrar el componente correctamente ', () => {
+        
+        const wrapper = shallow( <GifGridItem /> )
+        expect( wrapper ).toMatchSnapshot();
+    });
+````
+#
