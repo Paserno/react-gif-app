@@ -384,3 +384,34 @@ test('debe de mostrar el componente correctamente ', () => {
     });
 ````
 #
+### 2.- Implementando PropTypes en `GifGridItem.js`
+Implementamos una propiedad que se requiera en `GifGridItem.js`, y modificamos el __Snapshots__ de el punto anterior.
+Para esto nos vamos a `components/GifGridItem.js`
+* Realizamos la importación de `PropTypes`.
+````
+import PropTypes from 'prop-types';
+````
+* Al final de nuestro archivo agregamos el `PropType`, señalando que el titulo y el url son obligatorios.
+````
+GifGridItem.propType = {
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+}
+````
+Ahora en los __Test__ `tests/components/GifGridItem.test.js`
+* Agregamos a la pruebas unas constantes que se lo pasaremos al test del componente.
+````
+describe('Pruebas en <GifGridItem >', () => {
+    
+    const title = 'Un título';
+    const url   = 'https://localhost/algo.jpg';
+     ...
+}
+````
+* Dentro del test del componente, agregamos la propiedad de la constante que creamos.
+* Luego nos señalara un error el __Snapshots__ y lo actualizamos con el caracter "u".
+````
+const wrapper = shallow( <GifGridItem title={ title } url={ url } /> )
+expect( wrapper ).toMatchSnapshot();
+````
+#

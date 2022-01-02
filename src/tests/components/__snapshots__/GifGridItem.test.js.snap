@@ -4,9 +4,13 @@ exports[`Pruebas en <GifGridItem > debe de mostrar el componente correctamente  
 <div
   className="card animate__animated animate__fadeIn animate__slow"
 >
-  <img />
+  <img
+    alt="Un título"
+    src="https://localhost/algo.jpg"
+  />
   <p>
      
+    Un título
      
   </p>
 </div>
